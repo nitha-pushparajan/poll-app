@@ -31,5 +31,3 @@ const Loader = () => {
 };
 
 export default Loader;
-
-Loader.displayName = 'Loader';

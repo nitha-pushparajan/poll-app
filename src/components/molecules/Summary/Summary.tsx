@@ -52,5 +52,3 @@ const Summary: FC<SummaryProps> = ({ items }) => {
 };
 
 export default Summary;
-
-Summary.displayName = 'Summary';

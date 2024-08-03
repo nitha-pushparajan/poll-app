@@ -1,5 +1,4 @@
-import React, { FC, useRef, useState } from 'react';
-import SwiperPagination from '../../molecules/SwiperPagination/SwiperPagination';
+import { FC } from 'react';
 import Question from '../../molecules/Question/Question';
 import Summary from '../../molecules/Summary/Summary';
 import Swiper from '../Swiper/Swiper';
@@ -18,5 +17,3 @@ const VerticalCarousel: FC<VerticalCarouselProps> = ({ items }) => {
 };
 
 export default VerticalCarousel;
-
-VerticalCarousel.displayName = 'VerticalCarousel';

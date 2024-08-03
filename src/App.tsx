@@ -89,8 +89,8 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      <header className="App-header">
+    <div className="app">
+      <div className='app-body'>
         {isLoading || isSubmitted ? (
           <>
             {isLoading && <Loader />}
@@ -111,7 +111,7 @@ function App() {
             )}
           </>
         )}
-      </header>
+      </div>
     </div>
   );
 }

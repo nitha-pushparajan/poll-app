@@ -33,5 +33,3 @@ const Question: FC<QuestionProps> = ({ question, id, options }) => {
 };
 
 export default Question;
-
-Question.displayName = 'Question';

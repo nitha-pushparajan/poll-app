@@ -40,5 +40,3 @@ const Option: FC<OptionProps> = ({ imageUrl, label, id, isSelected, handleOption
 };
 
 export default Option;
-
-Option.displayName = 'Option';

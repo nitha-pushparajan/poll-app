@@ -22,5 +22,3 @@ const OptionsList: FC<OptionsListProps> = ({ options, handleOptionSelection, sel
 };
 
 export default OptionsList;
-
-OptionsList.displayName = 'OptionsList';
