@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import Option from '../../atoms/Option/Option';
+import Option from 'src/components/atoms/Option/Option';
 import { OptionsListProps } from './OptionsList.types';
 
 const OptionsList: FC<OptionsListProps> = ({ options, handleOptionSelection, selected }) => {

@@ -1,7 +1,7 @@
 import { FC } from 'react';
-import Question from '../../molecules/Question/Question';
-import Summary from '../../molecules/Summary/Summary';
-import Swiper from '../Swiper/Swiper';
+import Question from 'src/components/molecules/Question/Question';
+import Summary from 'src/components/molecules/Summary/Summary';
+import Swiper from 'src/components/organisms/Swiper/Swiper';
 import { VerticalCarouselProps } from './VerticalCarousel.types';
 import clsx from 'clsx';
 

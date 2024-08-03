@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { VerticalCarousel } from './components/organisms/VerticalCarousel';
-import { getQuestions } from '../src/services/index';
-import { AppState } from '../src/store/types';
-import { setLoading } from '../src/store/actions';
+import { VerticalCarousel } from 'src/components/organisms/VerticalCarousel';
+import Loader from 'src/components//atoms/Loader/Loader';
+import { getQuestions } from 'src/services/index';
+import { AppState } from 'src/store/types';
+import { setLoading } from 'src/store/actions';
 
 import './App.css';
-import Loader from './components//atoms/Loader/Loader';
 
 function App() {
   const data = [
