@@ -1,7 +1,9 @@
-import { AppState, ADD_ANSWER, AppActionTypes } from './types';
+import { AppState, ADD_ANSWER, AppActionTypes, SET_LOADING, SET_SUBMITTED } from './types';
 
 const initialState: AppState = {
-  answers: {}
+  answers: {},
+  isLoading: false,
+  isSubmitted: false
 };
 
 const pollReducer = (state = initialState, action: AppActionTypes): AppState => {
@@ -14,6 +16,17 @@ const pollReducer = (state = initialState, action: AppActionTypes): AppState => 
           [action.payload.questionId]: action.payload.answer
         }
       };
+      case SET_LOADING:
+        return {
+          ...state,
+          isLoading: action.payload
+        };
+        case SET_SUBMITTED:
+          return {
+            ...state,
+            isLoading: false,
+            isSubmitted: action.payload
+          };              
     default:
       return state;
   }

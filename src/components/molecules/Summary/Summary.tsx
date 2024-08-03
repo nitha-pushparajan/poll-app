@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { submitAnswers } from '../../../services';
-
+import { setLoading, setSubmitted } from '../../../store/actions';
 import { SummaryProps } from './Summary.types';
 import { AppState } from '../../../store/types';
 
@@ -16,9 +16,11 @@ const Summary: FC<SummaryProps> = ({ items }) => {
   };
 
   const answers = useSelector((state: AppState) => state.answers);
-
-  const handleSubmit = () => {
-    submitAnswers(answers);
+  const dispatch = useDispatch();
+  const handleSubmit = async() => {
+    dispatch(setLoading(true));
+    await submitAnswers(answers);
+    dispatch(setSubmitted(true));
   };
 
   const questionAnswers = items.map((question) => {

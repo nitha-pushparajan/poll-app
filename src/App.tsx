@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { VerticalCarousel } from './components/organisms/VerticalCarousel';
-import { getQuestions, submitAnswers } from '../src/services/index';
+import { getQuestions } from '../src/services/index';
+import { AppState } from '../src/store/types';
+import { setLoading } from '../src/store/actions';
+
 import './App.css';
 import Loader from './components//atoms/Loader/Loader';
 
@@ -58,13 +62,14 @@ function App() {
       ]
     }
   ];
-
-  const [loading, setloading] = useState(false);
+  const questionsState = useSelector((state: AppState) => state);
+  const dispatch = useDispatch();
   const [error, setError] = useState();
   const [questions, setQuestions] = useState([]);
 
   const fetchQuestions = async () => {
-    setloading(true);
+    dispatch(setLoading(true));
+
     await getQuestions()
       .then((res: any) => {
         setQuestions(res?.record?.questions);
@@ -73,7 +78,7 @@ function App() {
         setError(error);
       })
       .finally(() => {
-        setloading(false);
+        dispatch(setLoading(false));
       });
   };
 
@@ -84,14 +89,20 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        {loading ? (
-          <Loader />
+        {questionsState.isLoading || questionsState.isSubmitted ? (
+          <>
+            {questionsState.isLoading && <Loader />}
+            {questionsState.isSubmitted &&
+            <div className="w-full h-full absolute flex justify-center items-center text-[#fff]">
+              You have successfully submitted your answers.
+            </div>
+            }
+          </>
         ) : (
           <>
             {error ? (
               <div className="w-full h-full absolute flex justify-center items-center text-[#fff]">
-                An error occured in fethcing data mock questions. Please try again or try with mock
-                data
+                An error occured. Please try again after some time.
               </div>
             ) : (
               <VerticalCarousel items={data} />
