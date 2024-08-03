@@ -1,9 +1,13 @@
 import axios from 'axios';
 
 export async function getQuestions() {
-    return await axios.get('https://run.mocky.io/v3/55159063-f760-44e4-902c-695f2343dab0')
+    return await axios.get('https://api.jsonbin.io/v3/b/66ae268ae41b4d34e41b1cce',{
+        headers: {
+            'X-Master-Key': '$2a$10$1KQLsnL96pHHlB/j3D5HGOBSxJL2aOxMcypQy/H1ZVXlfHHm96qTm'
+        }
+    })
         .then((response) => {
-            return response;
+            return response.data;
         })
         .catch((error) => {
             return new Promise((_resolve, reject) => {
@@ -12,14 +16,13 @@ export async function getQuestions() {
         });
 }
 
-export async function submitAnswers() {
-    return await axios.post('https://api.example.com/my-endpoint', {
-        firstName: 'Fred',
-        lastName: 'Flintstone',
-        orders: [1, 2, 3],
+export async function submitAnswers(answers: any) {
+    return await axios.post('https://api.jsonbin.io/v3/b/', {
+        ...answers
     }, {
         headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
+            'Content-Type': 'application/json',
+             'X-Master-Key': '$2a$10$1KQLsnL96pHHlB/j3D5HGOBSxJL2aOxMcypQy/H1ZVXlfHHm96qTm'
         }
     })
     .then((response) => {

@@ -1,13 +1,15 @@
 import React, { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import OptionList from '../OptionsList/OptionsList';
+import { submitAnswers } from '../../../services'
+
 import { SummaryProps } from "./Summary.types";
 import { addAnswer } from '../../../store/actions';
 import { AppState } from '../../../store/types';
 
 import './Summary.css';
 
-const Summary:FC<SummaryProps> = ({ items, handleSubmit }) => {
+const Summary:FC<SummaryProps> = ({ items }) => {
 
   const classNames = {
     container: 'poll-summary grid grid-cols-2 h-[100vh] align-middle justify-center',
@@ -15,9 +17,13 @@ const Summary:FC<SummaryProps> = ({ items, handleSubmit }) => {
     answersList: 'answers-list flex flex-col justify-around bg-[#000] w-full p-[50px]',
     submitBtn: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
   };
-  const dispatch = useDispatch();
+
   const answers = useSelector((state: AppState) => state.answers);
   
+  const handleSubmit = () => {
+    submitAnswers(answers);
+  }
+
   const questionAnswers = items.map((question) => {
     const answer = question.options.filter((option) => {
       return option.id === answers[question.id]
@@ -40,7 +46,7 @@ const Summary:FC<SummaryProps> = ({ items, handleSubmit }) => {
             </div>
         ))
       }
-      <button className={classNames.submitBtn}>Submit</button>       
+      <button className={classNames.submitBtn} onClick={handleSubmit}>Submit</button>       
        </div>
     </div>
   );

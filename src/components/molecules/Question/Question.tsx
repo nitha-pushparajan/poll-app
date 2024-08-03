@@ -15,7 +15,6 @@ const Question:FC<QuestionProps> = ({ question, id, options }) => {
   const dispatch = useDispatch();
   const answers = useSelector((state: AppState) => state.answers);
   const selectedAnswer = answers[id];
-  console.log(answers,selectedAnswer, "answers ->")
   const handleOptionSelection = (answerId: number) => {
     dispatch(addAnswer(id, answerId));
   }
