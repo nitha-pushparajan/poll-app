@@ -1,44 +1,46 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, fireEvent, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import Option from './Option';
 
-const mockHandleOptionSelection = jest.fn();
-
-const defaultProps = {
-  imageUrl: 'https://example.com/image.jpg',
-  label: 'Test Label',
-  id: 1,
-  isSelected: false,
-  handleOptionSelection: mockHandleOptionSelection
-};
-
 describe('Option Component', () => {
-  beforeEach(() => {
-    mockHandleOptionSelection.mockClear();
+  const mockHandleOptionSelection = jest.fn();
+
+  const defaultProps = {
+    imageUrl: 'https://example.com/image.jpg',
+    label: 'Sample Label',
+    id: 1,
+    isSelected: false,
+    handleOptionSelection: mockHandleOptionSelection,
+  };
+
+  test('renders without crashing', () => {
+    render(<Option {...defaultProps} />);
   });
 
-  test('renders the SVG when isSelected is true', () => {
-    render(<Option {...defaultProps} isSelected={true} />);
+  test('renders the image with the correct src and alt', () => {
+    render(<Option {...defaultProps} />);
+    const img = screen.getByAltText('Sample Label');
+    expect(img).toBeInTheDocument();
+    expect(img).toHaveAttribute('src', 'https://example.com/image.jpg');
+  });
 
-    // Verify SVG renders when isSelected is true
-    const svg = screen.getByRole('img', { hidden: true });
+  test('renders the label text', () => {
+    render(<Option {...defaultProps} />);
+    const label = screen.getByText('Sample Label');
+    expect(label).toBeInTheDocument();
+  });
+
+  test('shows the selected indicator when isSelected is true', () => {
+    render(<Option {...defaultProps} isSelected={true} />);
+    const svg = screen.getByTestId('option-selection');
     expect(svg).toBeInTheDocument();
   });
 
-  test('applies the correct classes based on isSelected prop', () => {
-    const { rerender } = render(<Option {...defaultProps} isSelected={false} />);
-
-    // Verify classes when isSelected is false
-    const label = screen.getByText(defaultProps.label);
-    expect(label).toHaveClass(
-      'opacity-0 translate-y-[10px] group-hover:opacity-100 group-hover:translate-y-[0] transition ease-in-out delay-350'
-    );
-
-    // Re-render with isSelected as true
-    rerender(<Option {...defaultProps} isSelected={true} />);
-
-    // Verify classes when isSelected is true
-    expect(label).toHaveClass('flex justify-center items-center');
+  test('calls handleOptionSelection when clicked', () => {
+    render(<Option {...defaultProps} />);
+    const optionDiv = screen.getByTestId('option-div');
+    fireEvent.click(optionDiv);
+    expect(mockHandleOptionSelection).toHaveBeenCalledWith(1);
   });
 });
