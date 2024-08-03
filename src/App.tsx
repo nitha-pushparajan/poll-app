@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import {VerticalCarousel} from './components/organisms/VerticalCarousel';
 import {getQuestions} from '../src/services/index'
 import './App.css';
+import Swiper from './components/organisms/VerticalCarousel/Swiper';
 
 function App() {
 const data = [
@@ -80,7 +81,31 @@ const data = [
   return (
     <div className="App">
       <header className="App-header">
-        {<VerticalCarousel items={data}/>}
+        {<Swiper items={data}/>}
+        {/* <Swiper items={
+          [
+            {
+              imageSrc: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqmA_K0xJxXq6VQFwJBXUmtFAvvoJJBmxYZg&s',
+              imageAlt: "A person's eye",
+            },
+            {
+              imageSrc: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8goUv6Q5MaxE1l6W0yac8ZGcKz0NeclExJg&s',
+              imageAlt: 'A rock formation',
+            },
+            {
+              imageSrc: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqmA_K0xJxXq6VQFwJBXUmtFAvvoJJBmxYZg&s',
+              imageAlt: 'Some flowers',
+            },
+            {
+              imageSrc: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqmA_K0xJxXq6VQFwJBXUmtFAvvoJJBmxYZg&s',
+              imageAlt: 'An egyptian wall painting',
+            },
+            {
+              imageSrc: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqmA_K0xJxXq6VQFwJBXUmtFAvvoJJBmxYZg&s',
+              imageAlt: 'A butterfly on a leaf',
+            },
+          ]
+        }/> */}
       </header>
     </div>
   );
