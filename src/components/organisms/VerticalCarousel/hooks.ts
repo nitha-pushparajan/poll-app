@@ -4,9 +4,7 @@ export function getRefValue<C>(ref: RefObject<C>) {
   return ref.current as C;
 }
 
-export function useStateRef<S>(
-  defaultValue: S
-): [S, (value: S) => void, RefObject<S>] {
+export function useStateRef<S>(defaultValue: S): [S, (value: S) => void, RefObject<S>] {
   const ref = useRef<S>(defaultValue);
   const [state, _setState] = useState<S>(defaultValue);
   const setState = (value: S) => {

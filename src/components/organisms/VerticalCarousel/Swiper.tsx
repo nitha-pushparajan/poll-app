@@ -4,7 +4,7 @@ import Question from '../../molecules/Question/Question';
 import Summary from '../../molecules/Summary/Summary';
 import { getRefValue, useStateRef } from './hooks';
 import { getTouchEventData } from './dom';
-import { VerticalCarouselProps } from "./VerticalCarousel.types";
+import { VerticalCarouselProps } from './VerticalCarousel.types';
 
 import './Swiper.css';
 
@@ -23,7 +23,7 @@ function Swiper({ items }: VerticalCarouselProps) {
 
   const classNames = {
     container: 'vertical-swiper swiper-container w-full h-[100vh] max-h-[100vh] overflow-hidden',
-    list: "flex flex-col p-0 m-0",
+    list: 'flex flex-col p-0 m-0'
   };
 
   const onTouchMove = (e: TouchEvent | MouseEvent) => {
@@ -73,9 +73,7 @@ function Swiper({ items }: VerticalCarouselProps) {
     window.removeEventListener('mouseup', onTouchEnd);
     window.removeEventListener('mousemove', onTouchMove);
   };
-  const onTouchStart = (
-    e: React.TouchEvent<HTMLDivElement> | React.MouseEvent<HTMLDivElement>
-  ) => {
+  const onTouchStart = (e: React.TouchEvent<HTMLDivElement> | React.MouseEvent<HTMLDivElement>) => {
     setIsSwiping(true);
 
     currentOffsetYRef.current = getRefValue(offsetYRef);
@@ -99,58 +97,56 @@ function Swiper({ items }: VerticalCarouselProps) {
 
     setCurrentIdx(idx);
     setOffsetY(-(swiperHeight * idx));
-    console.log(-(swiperHeight * idx))
+    console.log(-(swiperHeight * idx));
   };
 
   return (
     <>
-    <div
-      className="swiper-container"
-      onTouchStart={onTouchStart}
-      onMouseDown={onTouchStart}
-      ref={swiperRef}
-    >
-      <ul
-        ref={containerRef}
-        className={`swiper-list ${isSwiping ? 'is-swiping' : ''}`}
-        style={{ transform: `translate3d(0, ${offsetY}px, 0)` }}
+      <div
+        className="swiper-container"
+        onTouchStart={onTouchStart}
+        onMouseDown={onTouchStart}
+        ref={swiperRef}
       >
-        {
-          items.map((question, idx) => (
-            <div className={clsx({
-              "active-slide": currentIdx === idx
-            })}>
+        <ul
+          ref={containerRef}
+          className={`swiper-list ${isSwiping ? 'is-swiping' : ''}`}
+          style={{ transform: `translate3d(0, ${offsetY}px, 0)` }}
+        >
+          {items.map((question, idx) => (
+            <div
+              className={clsx({
+                'active-slide': currentIdx === idx
+              })}
+            >
               <Question {...question} key={question.id} />
             </div>
-          ))
-        }
-          <div className={clsx({
-            "active-slide": currentIdx === items.length
-          })}>
-          <Summary items={items} />
-        </div>
-      </ul>
-    </div>
-          <ul className="swiper-indicator">
-          {items.map((_item, idx) => (
-            <li
-              key={idx}
-              className={`swiper-indicator-item ${
-                currentIdx === idx ? 'active' : ''
-              }`}
-              onClick={() => indicatorOnClick(idx)}
-              data-testid="indicator"
-            />
           ))}
-            <li
-              className={`swiper-indicator-item ${
-                currentIdx === items.length ? 'active' : ''
-              }`}
-              onClick={() => indicatorOnClick(items.length)}
-              data-testid="indicator"
-            />
+          <div
+            className={clsx({
+              'active-slide': currentIdx === items.length
+            })}
+          >
+            <Summary items={items} />
+          </div>
         </ul>
-        </>
+      </div>
+      <ul className="swiper-indicator">
+        {items.map((_item, idx) => (
+          <li
+            key={idx}
+            className={`swiper-indicator-item ${currentIdx === idx ? 'active' : ''}`}
+            onClick={() => indicatorOnClick(idx)}
+            data-testid="indicator"
+          />
+        ))}
+        <li
+          className={`swiper-indicator-item ${currentIdx === items.length ? 'active' : ''}`}
+          onClick={() => indicatorOnClick(items.length)}
+          data-testid="indicator"
+        />
+      </ul>
+    </>
   );
 }
 

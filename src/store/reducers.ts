@@ -1,7 +1,7 @@
 import { AppState, ADD_ANSWER, AppActionTypes } from './types';
 
 const initialState: AppState = {
-  answers: {},
+  answers: {}
 };
 
 const pollReducer = (state = initialState, action: AppActionTypes): AppState => {
@@ -11,13 +11,12 @@ const pollReducer = (state = initialState, action: AppActionTypes): AppState => 
         ...state,
         answers: {
           ...state.answers,
-          [action.payload.questionId]: action.payload.answer,
-        },
+          [action.payload.questionId]: action.payload.answer
+        }
       };
     default:
       return state;
   }
 };
-
 
 export default pollReducer;

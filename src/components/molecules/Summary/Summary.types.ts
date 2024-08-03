@@ -1,5 +1,5 @@
-import { QuestionProps } from '../../molecules/Question'
+import { QuestionProps } from '../../molecules/Question';
 
 export interface SummaryProps {
-    items: QuestionProps[];
+  items: QuestionProps[];
 }

@@ -8,12 +8,7 @@ export type Props = SwiperItemType;
 function SwiperItem({ imageSrc, imageAlt }: Props) {
   return (
     <li className="swiper-item">
-      <img
-        src={imageSrc}
-        alt={imageAlt}
-        className="swiper-img"
-        draggable={false}
-      />
+      <img src={imageSrc} alt={imageAlt} className="swiper-img" draggable={false} />
     </li>
   );
 }
