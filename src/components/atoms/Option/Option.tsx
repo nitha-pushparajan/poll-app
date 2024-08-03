@@ -6,7 +6,7 @@ const Option: FC<OptionProps> = ({ imageUrl, label, id, isSelected, handleOption
   const classNames = {
     option: 'flex justify-start items-center flex-col group',
     label: clsx('text-[#000] ', {
-      'opacity-0 translate-y-[10px] group-hover:opacity-100 group-hover:translate-y-[0] transition ease-in-out delay-350':
+      'opacity-0 translate-y-[50px] group-hover:opacity-100 group-hover:translate-y-[0] transition duration-500 ease-in-out delay-350':
         !isSelected,
       'flex justify-center items-center': isSelected
     })
