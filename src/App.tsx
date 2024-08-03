@@ -62,7 +62,9 @@ function App() {
       ]
     }
   ];
-  const questionsState = useSelector((state: AppState) => state);
+  const isLoading = useSelector((state: AppState) => (state.isLoading));
+  const isSubmitted = useSelector((state: AppState) => (state.isSubmitted));
+
   const dispatch = useDispatch();
   const [error, setError] = useState();
   const [questions, setQuestions] = useState([]);
@@ -89,10 +91,10 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        {questionsState.isLoading || questionsState.isSubmitted ? (
+        {isLoading || isSubmitted ? (
           <>
-            {questionsState.isLoading && <Loader />}
-            {questionsState.isSubmitted && (
+            {isLoading && <Loader />}
+            {isSubmitted && (
               <div className="w-full h-full absolute flex justify-center items-center text-[#fff]">
                 You have successfully submitted your answers.
               </div>
