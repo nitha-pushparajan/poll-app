@@ -17,6 +17,8 @@ describe('Loader Component', () => {
   test('LoaderIcon is rendered with the correct class', () => {
     render(<Loader />);
     const loaderIcon = screen.getByRole('status').querySelector('svg');
-    expect(loaderIcon).toHaveClass('w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600');
+    expect(loaderIcon).toHaveClass(
+      'w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600'
+    );
   });
 });

@@ -104,6 +104,7 @@ function Swiper({ children }: SwiperProps) {
     <>
       <div
         className="swiper-container"
+        data-testid="swiper-container"
         onTouchStart={onTouchStart}
         onMouseDown={onTouchStart}
         ref={swiperRef}
@@ -116,7 +117,7 @@ function Swiper({ children }: SwiperProps) {
           {React.Children.map(children, (child, idx) => (
             <div
               key={idx}
-              className={clsx({
+              className={clsx('swiper-slide', {
                 'active-slide': currentIdx === idx
               })}
             >

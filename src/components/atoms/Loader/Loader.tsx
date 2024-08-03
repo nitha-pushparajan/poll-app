@@ -1,4 +1,4 @@
-import { LoaderIcon } from 'src/components/atoms/LoaderIcon'
+import { LoaderIcon } from 'src/components/atoms/LoaderIcon';
 
 const Loader = () => {
   const classNames = {

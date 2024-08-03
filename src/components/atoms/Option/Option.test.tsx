@@ -11,7 +11,7 @@ describe('Option Component', () => {
     label: 'Sample Label',
     id: 1,
     isSelected: false,
-    handleOptionSelection: mockHandleOptionSelection,
+    handleOptionSelection: mockHandleOptionSelection
   };
 
   test('renders without crashing', () => {

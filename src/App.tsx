@@ -62,8 +62,8 @@ function App() {
       ]
     }
   ];
-  const isLoading = useSelector((state: AppState) => (state.isLoading));
-  const isSubmitted = useSelector((state: AppState) => (state.isSubmitted));
+  const isLoading = useSelector((state: AppState) => state.isLoading);
+  const isSubmitted = useSelector((state: AppState) => state.isSubmitted);
 
   const dispatch = useDispatch();
   const [error, setError] = useState();
@@ -90,7 +90,7 @@ function App() {
 
   return (
     <div className="app">
-      <div className='app-body'>
+      <div className="app-body">
         {isLoading || isSubmitted ? (
           <>
             {isLoading && <Loader />}
