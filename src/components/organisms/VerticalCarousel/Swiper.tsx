@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import clsx from 'clsx';
 import Question from '../../molecules/Question/Question';
 import Summary from '../../molecules/Summary/Summary';
 import { getRefValue, useStateRef } from './hooks';
@@ -23,7 +24,6 @@ function Swiper({ items }: VerticalCarouselProps) {
   const classNames = {
     container: 'vertical-swiper swiper-container w-full h-[100vh] max-h-[100vh] overflow-hidden',
     list: "flex flex-col p-0 m-0",
-    item: ''
   };
 
   const onTouchMove = (e: TouchEvent | MouseEvent) => {
@@ -116,13 +116,17 @@ function Swiper({ items }: VerticalCarouselProps) {
         style={{ transform: `translate3d(0, ${offsetY}px, 0)` }}
       >
         {
-          items.map(question => (
-            <div className={classNames.item}>
+          items.map((question, idx) => (
+            <div className={clsx({
+              "active-slide": currentIdx === idx
+            })}>
               <Question {...question} key={question.id} />
             </div>
           ))
         }
-        <div className={classNames.item}>
+          <div className={clsx({
+            "active-slide": currentIdx === items.length
+          })}>
           <Summary items={items} />
         </div>
       </ul>

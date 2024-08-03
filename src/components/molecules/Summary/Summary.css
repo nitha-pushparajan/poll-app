@@ -1,0 +1,7 @@
+.poll-summary .answers-list {
+    @apply opacity-0 translate-x-[-50%] transition ease-in-out duration-500 delay-300;
+}
+
+.active-slide .poll-summary .answers-list {
+    @apply opacity-100 translate-x-[0];
+}
