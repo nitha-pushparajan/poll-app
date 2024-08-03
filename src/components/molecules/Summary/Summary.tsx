@@ -1,10 +1,8 @@
 import React, { FC } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import OptionList from '../OptionsList/OptionsList';
+import { useSelector } from 'react-redux';
 import { submitAnswers } from '../../../services';
 
 import { SummaryProps } from './Summary.types';
-import { addAnswer } from '../../../store/actions';
 import { AppState } from '../../../store/types';
 
 import './Summary.css';

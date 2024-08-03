@@ -2,8 +2,8 @@ import React, { useState, useRef } from 'react';
 import clsx from 'clsx';
 import Question from '../../molecules/Question/Question';
 import Summary from '../../molecules/Summary/Summary';
-import { getRefValue, useStateRef } from './hooks';
-import { getTouchEventData } from './dom';
+import { getRefValue, useStateRef } from '../Swiper/hooks';
+import { getTouchEventData } from '../Swiper/dom';
 import { VerticalCarouselProps } from './VerticalCarousel.types';
 
 import './Swiper.css';

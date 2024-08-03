@@ -10,7 +10,7 @@ const VerticalCarousel: FC<VerticalCarouselProps> = ({ items }) => {
 
   return (
     <Swiper>
-      {items.map((question) => (
+      {items.map((question, idx) => (
         <Question {...question} key={question.id} />
       ))}
       <Summary items={items} />    
