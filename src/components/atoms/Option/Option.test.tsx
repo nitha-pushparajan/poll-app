@@ -31,7 +31,9 @@ describe('Option Component', () => {
 
     // Verify classes when isSelected is false
     const label = screen.getByText(defaultProps.label);
-    expect(label).toHaveClass('opacity-0 translate-y-[10px] group-hover:opacity-100 group-hover:translate-y-[0] transition ease-in-out delay-350');
+    expect(label).toHaveClass(
+      'opacity-0 translate-y-[10px] group-hover:opacity-100 group-hover:translate-y-[0] transition ease-in-out delay-350'
+    );
 
     // Re-render with isSelected as true
     rerender(<Option {...defaultProps} isSelected={true} />);

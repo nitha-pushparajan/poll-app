@@ -92,11 +92,11 @@ function App() {
         {questionsState.isLoading || questionsState.isSubmitted ? (
           <>
             {questionsState.isLoading && <Loader />}
-            {questionsState.isSubmitted &&
-            <div className="w-full h-full absolute flex justify-center items-center text-[#fff]">
-              You have successfully submitted your answers.
-            </div>
-            }
+            {questionsState.isSubmitted && (
+              <div className="w-full h-full absolute flex justify-center items-center text-[#fff]">
+                You have successfully submitted your answers.
+              </div>
+            )}
           </>
         ) : (
           <>

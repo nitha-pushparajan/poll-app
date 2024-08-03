@@ -16,17 +16,17 @@ const pollReducer = (state = initialState, action: AppActionTypes): AppState => 
           [action.payload.questionId]: action.payload.answer
         }
       };
-      case SET_LOADING:
-        return {
-          ...state,
-          isLoading: action.payload
-        };
-        case SET_SUBMITTED:
-          return {
-            ...state,
-            isLoading: false,
-            isSubmitted: action.payload
-          };              
+    case SET_LOADING:
+      return {
+        ...state,
+        isLoading: action.payload
+      };
+    case SET_SUBMITTED:
+      return {
+        ...state,
+        isLoading: false,
+        isSubmitted: action.payload
+      };
     default:
       return state;
   }

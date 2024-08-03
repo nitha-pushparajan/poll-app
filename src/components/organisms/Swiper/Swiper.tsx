@@ -115,11 +115,11 @@ function Swiper({ children }: SwiperProps) {
         >
           {React.Children.map(children, (child, idx) => (
             <div
-            key={idx}
-            className={clsx({
-              'active-slide': currentIdx === idx
-            })}
-          >
+              key={idx}
+              className={clsx({
+                'active-slide': currentIdx === idx
+              })}
+            >
               {child}
             </div>
           ))}
@@ -128,12 +128,12 @@ function Swiper({ children }: SwiperProps) {
       <ul className="swiper-indicator">
         {React.Children.map(children, (_, idx) => (
           <li
-          key={idx}
-          className={`swiper-indicator-item ${currentIdx === idx ? 'active' : ''}`}
-          onClick={() => indicatorOnClick(idx)}
-          data-testid="indicator"
-        />
-          ))}
+            key={idx}
+            className={`swiper-indicator-item ${currentIdx === idx ? 'active' : ''}`}
+            onClick={() => indicatorOnClick(idx)}
+            data-testid="indicator"
+          />
+        ))}
       </ul>
     </>
   );

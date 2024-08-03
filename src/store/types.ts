@@ -10,7 +10,6 @@ export const SET_LOADING = 'SET_LOADING';
 
 export const SET_SUBMITTED = 'SET_SUBMITTED';
 
-
 export type AddAnswerAction = {
   type: typeof ADD_ANSWER;
   payload: {

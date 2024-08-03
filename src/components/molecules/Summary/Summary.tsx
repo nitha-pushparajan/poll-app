@@ -17,7 +17,7 @@ const Summary: FC<SummaryProps> = ({ items }) => {
 
   const answers = useSelector((state: AppState) => state.answers);
   const dispatch = useDispatch();
-  const handleSubmit = async() => {
+  const handleSubmit = async () => {
     dispatch(setLoading(true));
     await submitAnswers(answers);
     dispatch(setSubmitted(true));
