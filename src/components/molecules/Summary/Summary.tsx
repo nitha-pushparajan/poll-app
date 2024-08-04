@@ -13,11 +13,12 @@ const Summary: FC<SummaryProps> = ({ items }) => {
     container:
       'poll-summary flex flex-col md:grid  md:grid-cols-2 h-[100vh] align-middle justify-center',
     summary:
-      'flex pt-[50px] pb-[50px] items-center justify-center md:justify-start px-[100px] bg-[#4747e4] text-[40px] font-medium z-10',
+      'flex pt-[50px] pb-[50px] items-center justify-center md:justify-start px-[100px] bg-[#4747e4] text-[40px] font-medium z-10 text-[#fff]',
     answersList:
       'flex-grow answers-list flex flex-col justify-around bg-[#000] w-full p-[20px] md:p-[50px] overflow-auto',
     submitBtn: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded',
-    question: 'font-medium text-[#00ffff]'
+    question: 'font-medium text-[#00ffff] text-center',
+    answer: 'text-[#fff] text-center'
   };
 
   const answers = useSelector((state: AppState) => state.answers);
@@ -56,7 +57,7 @@ const Summary: FC<SummaryProps> = ({ items }) => {
             <div className={classNames.question}>
               Q{idx + 1}) {question.question}
             </div>
-            <div>{question.answer}</div>
+            <div className={classNames.answer}>{question.answer}</div>
           </div>
         ))}
         <button className={classNames.submitBtn} onClick={handleSubmit}>

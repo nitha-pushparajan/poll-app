@@ -9,7 +9,7 @@ const Question: FC<QuestionProps> = ({ question, id, options }) => {
   const classNames = {
     container: 'flex flex-col md:grid md:grid-cols-2 h-[100vh] align-middle justify-center',
     question:
-      'flex pt-[50px] pb-[50px] items-center justify-center md:justify-start px-[50px] md:px-[100px] bg-[#4747e4] text-[30px] md:text-[40px] font-medium',
+      'flex pt-[50px] pb-[50px] items-center justify-center md:justify-start px-[50px] md:px-[100px] bg-[#4747e4] text-[30px] text-[#fff] md:text-[40px] font-medium',
     optionsList: 'flex flex-grow items-center justify-center bg-[#fff] w-full]'
   };
   const dispatch = useDispatch();

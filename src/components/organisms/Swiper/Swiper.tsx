@@ -129,7 +129,7 @@ function Swiper({ children }: SwiperProps) {
   }, [handleKeyDown, currentIdx]);
 
   return (
-    <>
+    <div className="flex justify-center flex-col">
       <div
         className="swiper-container"
         data-testid="swiper-container"
@@ -165,7 +165,7 @@ function Swiper({ children }: SwiperProps) {
           />
         ))}
       </ul>
-    </>
+    </div>
   );
 }
 
