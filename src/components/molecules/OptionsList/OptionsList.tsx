@@ -4,7 +4,7 @@ import { OptionsListProps } from './OptionsList.types';
 
 const OptionsList: FC<OptionsListProps> = ({ options, handleOptionSelection, selected }) => {
   const classNames = {
-    container: 'grid grid-cols-3 gap-10 w-full'
+    container: 'grid grid-cols-1 md:grid-cols-3 gap-10 w-full'
   };
 
   return (
