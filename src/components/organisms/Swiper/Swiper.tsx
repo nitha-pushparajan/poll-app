@@ -1,7 +1,7 @@
 import React, { ReactNode, useState, useRef, useEffect, useCallback } from 'react';
 import clsx from 'clsx';
-import { getRefValue, useStateRef } from './hooks';
-import { getTouchEventData } from './dom';
+import { getRefValue, useStateRef } from 'src/lib/hooks';
+import { getTouchEventData } from 'src/lib/dom';
 import './Swiper.css';
 
 export interface SwiperProps {
