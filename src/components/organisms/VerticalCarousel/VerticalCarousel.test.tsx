@@ -7,11 +7,15 @@ import pollReducer from 'src/store/reducers'; // Adjust the import based on your
 import { VerticalCarouselProps } from './VerticalCarousel.types';
 
 // Mock Swiper component
-jest.mock(
-  'src/components/organisms/Swiper/Swiper',
-  () =>
-    ({ children }: { children: React.ReactNode }) => <div>{children}</div>
-);
+jest.mock('src/components/molecules/Question/Question', () => (props: any) => (
+  <div data-testid="question" {...props} />
+));
+jest.mock('src/components/molecules/Summary/Summary', () => (props: any) => (
+  <div data-testid="summary" {...props} />
+));
+jest.mock('src/components/organisms/Swiper/Swiper', () => (props: any) => (
+  <div data-testid="swiper">{props.children}</div>
+));
 
 const store = createStore(pollReducer);
 
@@ -45,12 +49,17 @@ describe('VerticalCarousel Component', () => {
     );
   });
 
-  test('renders Summary component', () => {
-    render(
-      <Provider store={store}>
-        <VerticalCarousel items={mockItems} />
-      </Provider>
-    );
-    expect(screen.getByText('Summary')).toBeInTheDocument();
+  it('should render Question components with the correct props', () => {
+    render(<VerticalCarousel items={mockItems} />);
+
+    const questions = screen.getAllByTestId('question');
+    expect(questions).toHaveLength(mockItems.length);
+  });
+
+  it('should render Summary component with the correct props', () => {
+    render(<VerticalCarousel items={mockItems} />);
+
+    const summary = screen.getByTestId('summary');
+    expect(summary).toBeInTheDocument();
   });
 });

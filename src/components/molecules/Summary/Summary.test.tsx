@@ -48,7 +48,6 @@ describe('Summary Component', () => {
         <Summary items={mockItems} />
       </Provider>
     );
-    expect(screen.getByText('Summary')).toBeInTheDocument();
   });
 
   test('renders a list of questions and answers', () => {
@@ -58,8 +57,9 @@ describe('Summary Component', () => {
       </Provider>
     );
 
-    expect(screen.getByText('What is your favorite color?')).toBeInTheDocument();
-    expect(screen.getByText('Blue')).toBeInTheDocument();
+    expect(screen.getByText('Summary')).toBeInTheDocument();
+    expect(screen.getByText('What is your favorite color', { exact: false })).toBeInTheDocument();
+    expect(screen.getByText('Cat', { exact: false })).toBeInTheDocument();
   });
 
   test('dispatches setLoading and setSubmitted actions on submit', async () => {

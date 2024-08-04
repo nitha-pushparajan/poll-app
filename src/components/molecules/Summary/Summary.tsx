@@ -9,10 +9,12 @@ import './Summary.css';
 
 const Summary: FC<SummaryProps> = ({ items }) => {
   const classNames = {
-    container: 'poll-summary flex flex-col md:grid  md:grid-cols-2 h-[100vh] align-middle justify-center',
+    container:
+      'poll-summary flex flex-col md:grid  md:grid-cols-2 h-[100vh] align-middle justify-center',
     question:
       'flex pt-[50px] pb-[50px] items-center justify-center md:justify-start px-[100px] bg-[#4747e4] text-[40px] font-medium z-10',
-    answersList: 'flex-grow answers-list flex flex-col justify-around bg-[#000] w-full p-[20px] md:p-[50px]',
+    answersList:
+      'flex-grow answers-list flex flex-col justify-around bg-[#000] w-full p-[20px] md:p-[50px]',
     submitBtn: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
   };
 

@@ -2,9 +2,7 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
-// import { RootState } from 'src/store/types';
 import Question from './Question';
-import OptionList from 'src/components/molecules/OptionsList/OptionsList';
 import { addAnswer } from 'src/store/actions';
 import pollReducer from 'src/store/reducers';
 
