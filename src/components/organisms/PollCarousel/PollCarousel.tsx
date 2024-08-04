@@ -2,9 +2,9 @@ import { FC } from 'react';
 import Question from 'src/components/molecules/Question/Question';
 import Summary from 'src/components/molecules/Summary/Summary';
 import Swiper from 'src/components/organisms/Swiper/Swiper';
-import { VerticalCarouselProps } from './VerticalCarousel.types';
+import { PollCarouselProps } from './PollCarousel.types';
 
-const VerticalCarousel: FC<VerticalCarouselProps> = ({ items }) => {
+const PollCarousel: FC<PollCarouselProps> = ({ items }) => {
   return (
     <Swiper>
       {items.map((question) => (
@@ -15,4 +15,4 @@ const VerticalCarousel: FC<VerticalCarouselProps> = ({ items }) => {
   );
 };
 
-export default VerticalCarousel;
+export default PollCarousel;

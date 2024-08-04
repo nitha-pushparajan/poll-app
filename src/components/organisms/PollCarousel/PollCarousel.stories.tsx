@@ -1,22 +1,22 @@
 import React, { useEffect } from 'react';
 import { Meta, StoryFn } from '@storybook/react';
 import { Provider } from 'react-redux';
-import VerticalCarousel from './VerticalCarousel';
+import PollCarousel from './PollCarousel';
 import { createStore } from 'redux';
-import { VerticalCarouselProps } from './VerticalCarousel.types';
+import { PollCarouselProps } from './PollCarousel.types';
 import pollReducer from 'src/lib/store/reducers';
 
 export default {
-  title: 'Components/Organisms/VerticalCarousel',
-  component: VerticalCarousel,
+  title: 'Components/Organisms/PollCarousel',
+  component: PollCarousel,
   parameters: {
     layout: 'fullscreen' // Adjust based on your preference
   }
-} as Meta<typeof VerticalCarousel>;
+} as Meta<typeof PollCarousel>;
 
 const store = createStore(pollReducer);
 
-const mockItems: VerticalCarouselProps['items'] = [
+const mockItems: PollCarouselProps['items'] = [
   {
     id: 1,
     question: 'What is your favorite color?',
@@ -67,7 +67,7 @@ const mockItems: VerticalCarouselProps['items'] = [
   }
 ];
 
-const Template: StoryFn<typeof VerticalCarousel> = (args) => {
+const Template: StoryFn<typeof PollCarousel> = (args) => {
   useEffect(() => {
     store.dispatch({ type: 'ADD_ANSWER', payload: { questionId: 1, answer: 2 } }); // Mock initial state
     store.dispatch({ type: 'ADD_ANSWER', payload: { questionId: 2, answer: 1 } }); // Mock initial state
@@ -75,7 +75,7 @@ const Template: StoryFn<typeof VerticalCarousel> = (args) => {
 
   return (
     <Provider store={store}>
-      <VerticalCarousel {...args} />
+      <PollCarousel {...args} />
     </Provider>
   );
 };

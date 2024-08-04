@@ -2,9 +2,9 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
-import VerticalCarousel from './VerticalCarousel';
+import PollCarousel from './PollCarousel';
 import pollReducer from 'src/lib/store/reducers'; // Adjust the import based on your file structure
-import { VerticalCarouselProps } from './VerticalCarousel.types';
+import { PollCarouselProps } from './PollCarousel.types';
 
 // Mock Swiper component
 jest.mock('src/components/molecules/Question/Question', () => (props: any) => (
@@ -40,24 +40,24 @@ const mockItems = [
   }
 ];
 
-describe('VerticalCarousel Component', () => {
+describe('PollCarousel Component', () => {
   test('renders without crashing', () => {
     render(
       <Provider store={store}>
-        <VerticalCarousel items={mockItems} />
+        <PollCarousel items={mockItems} />
       </Provider>
     );
   });
 
   it('should render Question components with the correct props', () => {
-    render(<VerticalCarousel items={mockItems} />);
+    render(<PollCarousel items={mockItems} />);
 
     const questions = screen.getAllByTestId('question');
     expect(questions).toHaveLength(mockItems.length);
   });
 
   it('should render Summary component with the correct props', () => {
-    render(<VerticalCarousel items={mockItems} />);
+    render(<PollCarousel items={mockItems} />);
 
     const summary = screen.getByTestId('summary');
     expect(summary).toBeInTheDocument();

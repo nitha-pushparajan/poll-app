@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Toaster } from 'react-hot-toast';
-import { VerticalCarousel } from 'src/components/organisms/VerticalCarousel';
+import { PollCarousel } from 'src/components/organisms/PollCarousel';
 import Loader from 'src/components/atoms/Loader/Loader';
 import logo from './logo.svg';
 import { getQuestions } from 'src/lib/services';
@@ -18,7 +18,7 @@ function App() {
   const [error, setError] = useState();
   const [questions, setQuestions] = useState([]);
 
-  const fetchQuestions = async () => {
+  const fetchQuestions = useCallback(async () => {
     dispatch(setLoading(true));
 
     await getQuestions()
@@ -31,11 +31,11 @@ function App() {
       .finally(() => {
         dispatch(setLoading(false));
       });
-  };
+  },[dispatch]);
 
   useEffect(() => {
     fetchQuestions();
-  }, []);
+  }, [fetchQuestions]);
 
   return (
     <div className="app">
@@ -59,7 +59,7 @@ function App() {
                 An error occured. Please try again after some time.
               </div>
             ) : (
-              <VerticalCarousel items={questions} />
+              <PollCarousel items={questions} />
             )}
           </>
         )}
