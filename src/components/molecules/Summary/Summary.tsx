@@ -12,25 +12,25 @@ const Summary: FC<SummaryProps> = ({ items }) => {
   const classNames = {
     container:
       'poll-summary flex flex-col md:grid  md:grid-cols-2 h-[100vh] align-middle justify-center',
-    question:
+    summary:
       'flex pt-[50px] pb-[50px] items-center justify-center md:justify-start px-[100px] bg-[#4747e4] text-[40px] font-medium z-10',
     answersList:
-      'flex-grow answers-list flex flex-col justify-around bg-[#000] w-full p-[20px] md:p-[50px]',
-    submitBtn: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
+      'flex-grow answers-list flex flex-col justify-around bg-[#000] w-full p-[20px] md:p-[50px] overflow-auto',
+    submitBtn: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded',
+    question: 'font-medium text-[#00ffff]'
   };
 
   const answers = useSelector((state: AppState) => state.answers);
   const dispatch = useDispatch();
   const handleSubmit = async () => {
-    if(Object.keys(answers).length !== questionAnswers.length) {
+    if (Object.keys(answers).length !== questionAnswers.length) {
       toast.error('Please answer all questions and submit again');
-    }
-    else{
+    } else {
       dispatch(setLoading(true));
-      try{
+      try {
         await submitAnswers(answers);
-        dispatch(setSubmitted(true));        
-      } catch(error) {
+        dispatch(setSubmitted(true));
+      } catch (error) {
         dispatch(setLoading(false));
         toast.error('An error ocurred in submission. Please submmit again');
       }
@@ -49,11 +49,13 @@ const Summary: FC<SummaryProps> = ({ items }) => {
 
   return (
     <div className={classNames.container}>
-      <div className={classNames.question}>Summary</div>
+      <div className={classNames.summary}>Summary</div>
       <div className={classNames.answersList}>
-        {questionAnswers.map((question) => (
+        {questionAnswers.map((question, idx) => (
           <div key={question.question}>
-            <div>{question.question}</div>
+            <div className={classNames.question}>
+              Q{idx + 1}) {question.question}
+            </div>
             <div>{question.answer}</div>
           </div>
         ))}

@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {Toaster} from 'react-hot-toast'
+import { Toaster } from 'react-hot-toast';
 import { VerticalCarousel } from 'src/components/organisms/VerticalCarousel';
 import Loader from 'src/components/atoms/Loader/Loader';
+import logo from './logo.svg';
 import { getQuestions } from 'src/lib/services';
 import { AppState } from 'src/lib/store/types';
 import { setLoading } from 'src/lib/store/actions';
@@ -94,6 +95,9 @@ function App() {
 
   return (
     <div className="app">
+      <header className="fixed top-0 left-0 z-10 p-[10px] md:p-[40px]">
+        <img src={logo} className="w-[50px]" alt="App logo" />
+      </header>
       <div className="app-body">
         {isLoading || isSubmitted ? (
           <>
@@ -116,7 +120,7 @@ function App() {
           </>
         )}
       </div>
-      <Toaster position="top-right"/>
+      <Toaster position="top-right" />
     </div>
   );
 }

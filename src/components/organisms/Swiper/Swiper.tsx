@@ -1,4 +1,4 @@
-import React, { ReactNode, useState, useRef, useEffect } from 'react';
+import React, { ReactNode, useState, useRef, useEffect, useCallback } from 'react';
 import clsx from 'clsx';
 import { getRefValue, useStateRef } from './hooks';
 import { getTouchEventData } from './dom';
@@ -104,28 +104,29 @@ function Swiper({ children }: SwiperProps) {
     console.log(-(swiperHeight * idx));
   };
 
-  const handleKeyDown = (e: KeyboardEvent) => {
-    const swiperEl = getRefValue(swiperRef);
-    const containerHeight = swiperEl.offsetHeight;
-    let newIdx = currentIdx;
+  const handleKeyDown = useCallback(
+    (e: KeyboardEvent) => {
+      const swiperEl = getRefValue(swiperRef);
+      const containerHeight = swiperEl.offsetHeight;
+      let newIdx = currentIdx;
+      if (e.key === 'ArrowUp' && currentIdx > 0) {
+        newIdx -= 1;
+      } else if (e.key === 'ArrowDown' && currentIdx < React.Children.count(children) - 1) {
+        newIdx += 1;
+      }
 
-    if (e.key === 'ArrowUp' && currentIdx > 0) {
-      newIdx -= 1;
-    } else if (e.key === 'ArrowDown' && currentIdx < React.Children.count(children) - 1) {
-      newIdx += 1;
-    }
-
-    setCurrentIdx(newIdx);
-    setOffsetY(-(containerHeight * newIdx));
-  };
+      setCurrentIdx(newIdx);
+      setOffsetY(-(containerHeight * newIdx));
+    },
+    [currentIdx, setOffsetY, children]
+  );
 
   useEffect(() => {
     window.addEventListener('keydown', handleKeyDown);
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [currentIdx]);
-
+  }, [handleKeyDown, currentIdx]);
 
   return (
     <>

@@ -11,7 +11,7 @@
 }
 
 .swiper-indicator {
-  @apply absolute left-[50px] flex flex-col gap-[10px] justify-center list-none mt-[15px] mb-0 ml-0 mr-0 p-0;
+  @apply absolute left-[20px] md:left-[50px] flex flex-col gap-[10px] justify-center list-none mt-[15px] mb-0 ml-0 mr-0 p-0;
 }
 
 .swiper-indicator-item {
