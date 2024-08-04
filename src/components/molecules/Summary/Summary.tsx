@@ -1,9 +1,9 @@
 import React, { FC } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { submitAnswers } from 'src/services';
-import { setLoading, setSubmitted } from 'src/store/actions';
+import { submitAnswers } from 'src/lib/services';
+import { setLoading, setSubmitted } from 'src/lib/store/actions';
 import { SummaryProps } from './Summary.types';
-import { AppState } from 'src/store/types';
+import { AppState } from 'src/lib/store/types';
 
 import './Summary.css';
 

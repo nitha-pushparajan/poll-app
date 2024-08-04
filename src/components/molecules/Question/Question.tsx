@@ -2,8 +2,8 @@ import React, { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import OptionList from 'src/components/molecules/OptionsList/OptionsList';
 import { QuestionProps } from './Question.types';
-import { addAnswer } from 'src/store/actions';
-import { AppState } from 'src/store/types';
+import { addAnswer } from 'src/lib/store/actions';
+import { AppState } from 'src/lib/store/types';
 
 const Question: FC<QuestionProps> = ({ question, id, options }) => {
   const classNames = {

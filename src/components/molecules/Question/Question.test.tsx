@@ -3,8 +3,8 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import Question from './Question';
-import { addAnswer } from 'src/store/actions';
-import pollReducer from 'src/store/reducers';
+import { addAnswer } from 'src/lib/store/actions';
+import pollReducer from 'src/lib/store/reducers';
 
 // Mock the Redux store
 const store = createStore(pollReducer);

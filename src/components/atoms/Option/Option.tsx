@@ -20,7 +20,7 @@ const Option: FC<OptionProps> = ({ imageUrl, label, id, isSelected, handleOption
         handleOptionSelection?.(id);
       }}
     >
-      <img src={imageUrl} alt={label} className="w-[50px] md:w-[100px] h-auto" />
+      <img src={imageUrl} alt={label} className="w-[40px] md:w-[100px] h-auto" />
       <span className={classNames.label}>
         {isSelected && (
           <svg

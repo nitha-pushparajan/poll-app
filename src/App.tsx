@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { VerticalCarousel } from 'src/components/organisms/VerticalCarousel';
-import Loader from 'src/components//atoms/Loader/Loader';
-import { getQuestions } from 'src/services/index';
-import { AppState } from 'src/store/types';
-import { setLoading } from 'src/store/actions';
+import Loader from 'src/components/atoms/Loader/Loader';
+import { getQuestions } from 'src/lib/services';
+import { AppState } from 'src/lib/store/types';
+import { setLoading } from 'src/lib/store/actions';
 
 import './App.css';
 

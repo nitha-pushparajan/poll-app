@@ -3,9 +3,9 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import Summary from './Summary';
-import pollReducer from 'src/store/reducers';
-import { setLoading, setSubmitted } from 'src/store/actions';
-import { submitAnswers } from 'src/services';
+import pollReducer from 'src/lib/store/reducers';
+import { setLoading, setSubmitted } from 'src/lib/store/actions';
+import { submitAnswers } from 'src/lib/services';
 
 // Mock the Redux store
 const store = createStore(pollReducer);
@@ -32,7 +32,7 @@ const mockItems = [
 ];
 
 // Mock submitAnswers function
-jest.mock('src/services', () => ({
+jest.mock('src/lib/services', () => ({
   submitAnswers: jest.fn().mockResolvedValue(true)
 }));
 

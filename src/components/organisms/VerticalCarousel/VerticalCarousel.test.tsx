@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import VerticalCarousel from './VerticalCarousel';
-import pollReducer from 'src/store/reducers'; // Adjust the import based on your file structure
+import pollReducer from 'src/lib/store/reducers'; // Adjust the import based on your file structure
 import { VerticalCarouselProps } from './VerticalCarousel.types';
 
 // Mock Swiper component

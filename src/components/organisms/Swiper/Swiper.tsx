@@ -25,15 +25,10 @@ function Swiper({ children }: SwiperProps) {
   const startYRef = useRef(0);
   // Current offsetY position
   const [offsetY, setOffsetY, offsetYRef] = useStateRef(0);
-  // isSwiping parameter 
+  // isSwiping parameter
   const [isSwiping, setIsSwiping] = useState(false);
-  // Current page index 
+  // Current page index
   const [currentIdx, setCurrentIdx] = useState(0);
-
-  const classNames = {
-    container: 'vertical-swiper swiper-container w-full h-[100vh] max-h-[100vh] overflow-hidden',
-    list: 'flex flex-col p-0 m-0'
-  };
 
   const onTouchMove = (e: TouchEvent | MouseEvent) => {
     const currentY = getTouchEventData(e).clientY;

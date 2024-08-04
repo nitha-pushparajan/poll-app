@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import { setReadOnlyProperty } from 'src/components/lib/test-helpers';
+import { setReadOnlyProperty } from 'src/lib/test-helpers';
 import Swiper from './Swiper';
 
 describe('<Swiper />', () => {
