@@ -1,7 +1,6 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
 import OptionsList from './OptionsList';
-import { OptionsListProps } from './OptionsList.types';
 
 export default {
   title: 'Components/Molecules/OptionsList',

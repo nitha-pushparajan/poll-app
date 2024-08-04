@@ -4,7 +4,7 @@ import { OptionProps } from './Option.types';
 
 const Option: FC<OptionProps> = ({ imageUrl, label, id, isSelected, handleOptionSelection }) => {
   const classNames = {
-    option: 'options flex justify-start items-center flex-col group',
+    option: 'options flex justify-start items-center flex-col group cursor-pointer',
     label: clsx('text-[#000] text-[20px] md:text-[25px]', {
       'opacity-0 translate-y-[50px] group-hover:opacity-100 group-hover:translate-y-[0] transition duration-500 ease-in-out delay-350':
         !isSelected,

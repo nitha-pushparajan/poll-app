@@ -4,7 +4,6 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import Question from './Question';
 import pollReducer from 'src/lib/store/reducers'; // Adjust the import path as needed
-import { AppState } from 'src/lib/store/types';
 
 // Create a mock Redux store
 const store = createStore(pollReducer);
