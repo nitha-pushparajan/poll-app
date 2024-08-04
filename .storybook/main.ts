@@ -1,32 +1,19 @@
-const path = require('path');
+import type { StorybookConfig } from '@storybook/react-webpack5';
 
-module.exports = {
-  stories: ['../src/**/*.stories.@(js|jsx|ts|tsx)'],
+const config: StorybookConfig = {
+  stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
   addons: [
+    '@storybook/preset-create-react-app',
+    '@storybook/addon-onboarding',
     '@storybook/addon-links',
     '@storybook/addon-essentials',
+    '@chromatic-com/storybook',
     '@storybook/addon-interactions'
   ],
-  framework: '@storybook/react',
-  core: {
-    builder: 'webpack5'
+  framework: {
+    name: '@storybook/react-webpack5',
+    options: {}
   },
-  webpackFinal: (config) => {
-    // Find the existing rule for CSS files
-    const cssRule = config.module.rules.find(
-      (rule) => rule.test && rule.test.toString().includes('css')
-    );
-
-    // Modify the CSS rule to use PostCSS loader
-    cssRule.use.push({
-      loader: 'postcss-loader',
-      options: {
-        postcssOptions: {
-          plugins: ['tailwindcss', 'autoprefixer']
-        }
-      }
-    });
-
-    return config;
-  }
+  staticDirs: ['..\\public']
 };
+export default config;
