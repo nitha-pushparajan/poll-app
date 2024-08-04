@@ -11,14 +11,23 @@ export interface SwiperProps {
 const MIN_SWIPE_REQUIRED = 40;
 
 function Swiper({ children }: SwiperProps) {
+  // For swiper container element
   const containerRef = useRef<HTMLUListElement>(null);
+  // For swiper element
   const swiperRef = useRef<HTMLDivElement>(null);
+  // For container height
   const containerHeightRef = useRef(0);
+  // Min offset Y beyond that it will stick to the last slide
   const minOffsetYRef = useRef(0);
+  // offsetY position befor touch start
   const currentOffsetYRef = useRef(0);
+  // Touch start point
   const startYRef = useRef(0);
+  // Current offsetY position
   const [offsetY, setOffsetY, offsetYRef] = useStateRef(0);
+  // isSwiping parameter 
   const [isSwiping, setIsSwiping] = useState(false);
+  // Current page index 
   const [currentIdx, setCurrentIdx] = useState(0);
 
   const classNames = {
@@ -33,7 +42,7 @@ function Swiper({ children }: SwiperProps) {
     let newOffsetY = getRefValue(currentOffsetYRef) - diff;
     const maxOffsetY = 0;
     const minOffsetY = getRefValue(minOffsetYRef);
-
+    // if conditions to prevent swiping from beyong top and bottom end
     if (newOffsetY > maxOffsetY) {
       newOffsetY = maxOffsetY;
     }
@@ -111,6 +120,7 @@ function Swiper({ children }: SwiperProps) {
       >
         <ul
           ref={containerRef}
+          data-testid="swiper-list"
           className={`swiper-list ${isSwiping ? 'is-swiping' : ''}`}
           style={{ transform: `translate3d(0, ${offsetY}px, 0)` }}
         >

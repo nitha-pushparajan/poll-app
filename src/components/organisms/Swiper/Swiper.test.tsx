@@ -1,67 +1,118 @@
-import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
-import '@testing-library/jest-dom/extend-expect';
+import { fireEvent, render, screen } from '@testing-library/react';
+import { setReadOnlyProperty } from 'src/components/lib/test-helpers';
 import Swiper from './Swiper';
 
-jest.mock('./hooks', () => ({
-  useStateRef: (initialValue: any) => [initialValue, jest.fn(), { current: initialValue }],
-  getRefValue: (ref: any) => ref.current
-}));
+describe('<Swiper />', () => {
+  const renderComponent = () =>
+    render(
+      <Swiper>
+        <div key="1">Slide 1</div>,<div key="2">Slide 2</div>,<div key="3">Slide 3</div>
+      </Swiper>
+    );
 
-jest.mock('./dom', () => ({
-  getTouchEventData: (e: any) => ({ clientY: e.touches ? e.touches[0].clientY : e.clientY })
-}));
+  it('should display the slides', () => {
+    renderComponent();
+    const slideEl = screen.getByText('Slide 1') as HTMLImageElement;
 
-describe('Swiper Component', () => {
-  const items = [
-    <div key="1">Slide 1</div>,
-    <div key="2">Slide 2</div>,
-    <div key="3">Slide 3</div>
-  ];
+    expect(slideEl).toBeInTheDocument();
+  });
 
-  it('should render the Swiper with slides and indicators', () => {
-    render(<Swiper>{items}</Swiper>);
+  it('should swipe items on mouse move', () => {
+    renderComponent();
 
-    expect(screen.getByTestId('swiper-container')).toBeInTheDocument();
-    items.forEach((_, idx) => {
-      expect(screen.getByText(`Slide ${idx + 1}`)).toBeInTheDocument();
+    const containerHeight = 500;
+    const containerScrollHeight = 500 * 3;
+
+    const containerEl = screen.queryAllByTestId('swiper-container')[0];
+    const listEl = screen.queryAllByTestId('swiper-list')[0];
+
+    // override list element's read-only properties
+    setReadOnlyProperty(containerEl, 'offsetHeight', containerHeight);
+    setReadOnlyProperty(listEl, 'scrollHeight', containerScrollHeight);
+
+    // verify start position is 0
+    expect(listEl).toHaveStyle({
+      transform: 'translate3d(0, 0px, 0)'
     });
 
-    const indicators = screen.getAllByTestId('indicator');
-    expect(indicators).toHaveLength(items.length);
+    // verify should move to the top
+    let startY = 0;
+
+    let endY = -55;
+
+    fireEvent.mouseDown(listEl, { clientY: startY });
+    fireEvent.mouseMove(listEl, { clientY: endY });
+    fireEvent.mouseUp(listEl);
+
+    expect(listEl).toHaveStyle({
+      transform: `translate3d(0, ${-containerHeight}px, 0)`
+    });
+
+    // verify should move to the bottom
+    startY = 0;
+    endY = 41;
+
+    fireEvent.mouseDown(listEl, { clientY: startY });
+    fireEvent.mouseMove(listEl, { clientY: endY });
+    fireEvent.mouseUp(listEl);
+
+    expect(listEl).toHaveStyle({
+      transform: `translate3d(0, 0px, 0)`
+    });
+
+    // verify should stay in position if less than minimum move
+    startY = 0;
+    endY = 30;
+
+    fireEvent.mouseDown(listEl, { clientY: startY });
+    fireEvent.mouseMove(listEl, { clientY: endY });
+    fireEvent.mouseUp(listEl);
+
+    expect(listEl).toHaveStyle({
+      transform: `translate3d(0, 0px, 0)`
+    });
+
+    // // verify shouldn't move further bottom if already at the start
+    startY = 0;
+    endY = 1;
+
+    fireEvent.mouseDown(listEl, { clientY: startY });
+    fireEvent.mouseMove(listEl, { clientY: endY });
+    fireEvent.mouseUp(listEl);
+
+    expect(listEl).toHaveStyle({
+      transform: `translate3d(0, 0px, 0)`
+    });
   });
 
-  it('should handle swipe up and down', () => {
-    render(<Swiper>{items}</Swiper>);
+  it('should swipe items on touch move', () => {
+    renderComponent();
 
-    const swiperContainer = screen.getByTestId('swiper-container');
+    const containerHeight = 500;
+    const containerScrollHeight = 500 * 3;
 
-    // Simulate swipe down
-    fireEvent.touchStart(swiperContainer, { touches: [{ clientY: 100 }] });
-    fireEvent.touchMove(swiperContainer, { touches: [{ clientY: 50 }] });
-    fireEvent.touchEnd(swiperContainer);
+    const containerEl = screen.queryAllByTestId('swiper-container')[0];
+    const listEl = screen.queryAllByTestId('swiper-list')[0];
 
-    // Assert that the swiper is still on Slide 1
-    expect(screen.getByText('Slide 1')).toBeInTheDocument();
+    // override list element's read-only properties
+    setReadOnlyProperty(containerEl, 'offsetHeight', containerHeight);
+    setReadOnlyProperty(listEl, 'scrollHeight', containerScrollHeight);
 
-    // Simulate swipe up
-    fireEvent.touchStart(swiperContainer, { touches: [{ clientY: 50 }] });
-    fireEvent.touchMove(swiperContainer, { touches: [{ clientY: 100 }] });
-    fireEvent.touchEnd(swiperContainer);
+    // verify start position is 0
+    expect(listEl).toHaveStyle({
+      transform: 'translate3d(0, 0px, 0)'
+    });
 
-    // Assert that the swiper has moved to Slide 2
-    expect(screen.getByText('Slide 2')).toBeInTheDocument();
-  });
+    // verify should move to the top
+    let startY = 0;
+    let endY = -41;
 
-  it('should change slide on indicator click', () => {
-    render(<Swiper>{items}</Swiper>);
+    fireEvent.touchStart(listEl, { changedTouches: [{ clientY: startY }] });
+    fireEvent.touchMove(listEl, { changedTouches: [{ clientY: endY }] });
+    fireEvent.touchEnd(listEl);
 
-    const indicators = screen.getAllByTestId('indicator');
-
-    // Click the second indicator (index 1)
-    fireEvent.click(indicators[1]);
-
-    // Assert that the swiper has moved to Slide 2
-    expect(screen.getByText('Slide 2')).toBeInTheDocument();
+    expect(listEl).toHaveStyle({
+      transform: `translate3d(0, ${-containerHeight}px, 0)`
+    });
   });
 });
