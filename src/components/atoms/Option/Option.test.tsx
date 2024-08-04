@@ -20,9 +20,9 @@ describe('Option Component', () => {
 
   test('renders the image with the correct src and alt', () => {
     render(<Option {...defaultProps} />);
-    const img = screen.getByAltText('Sample Label');
-    expect(img).toBeInTheDocument();
-    expect(img).toHaveAttribute('src', 'https://example.com/image.jpg');
+    const el = screen.getByAltText('Sample Label');
+    expect(el).toBeInTheDocument();
+    expect(el).toHaveAttribute('src', 'https://example.com/image.jpg');
   });
 
   test('renders the label text', () => {
@@ -33,8 +33,8 @@ describe('Option Component', () => {
 
   test('shows the selected indicator when isSelected is true', () => {
     render(<Option {...defaultProps} isSelected={true} />);
-    const svg = screen.getByTestId('option-selection');
-    expect(svg).toBeInTheDocument();
+    const img = screen.getByTestId('option-selection');
+    expect(img).toBeInTheDocument();
   });
 
   test('calls handleOptionSelection when clicked', () => {

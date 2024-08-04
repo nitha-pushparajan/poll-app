@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import {Toaster} from 'react-hot-toast'
 import { VerticalCarousel } from 'src/components/organisms/VerticalCarousel';
 import Loader from 'src/components/atoms/Loader/Loader';
 import { getQuestions } from 'src/lib/services';
@@ -115,6 +116,7 @@ function App() {
           </>
         )}
       </div>
+      <Toaster position="top-right"/>
     </div>
   );
 }

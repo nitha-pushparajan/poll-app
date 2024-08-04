@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { toast } from 'react-hot-toast';
 import { submitAnswers } from 'src/lib/services';
 import { setLoading, setSubmitted } from 'src/lib/store/actions';
 import { SummaryProps } from './Summary.types';
@@ -21,9 +22,19 @@ const Summary: FC<SummaryProps> = ({ items }) => {
   const answers = useSelector((state: AppState) => state.answers);
   const dispatch = useDispatch();
   const handleSubmit = async () => {
-    dispatch(setLoading(true));
-    await submitAnswers(answers);
-    dispatch(setSubmitted(true));
+    if(Object.keys(answers).length !== questionAnswers.length) {
+      toast.error('Please answer all questions and submit again');
+    }
+    else{
+      dispatch(setLoading(true));
+      try{
+        await submitAnswers(answers);
+        dispatch(setSubmitted(true));        
+      } catch(error) {
+        dispatch(setLoading(false));
+        toast.error('An error ocurred in submission. Please submmit again');
+      }
+    }
   };
 
   const questionAnswers = items.map((question) => {
