@@ -1,45 +1,23 @@
 .swiper-container {
-  width: 100%;
-  height: 100vh;
-  max-height: 100vh;
-  overflow: hidden;
-  touch-action: pan-x;
+  @apply w-full h-screen max-h-screen overflow-hidden touch-pan-x;
 }
 
 .swiper-list {
-  display: flex;
-  flex-direction: column;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  transition: transform 0.3s ease-out;
+  @apply flex flex-col list-none p-0 m-0 transition-transform duration-300 ease-out;
 }
 
 .swiper-list.is-swiping {
-  transition: none;
+  @apply transition-none;
 }
 
 .swiper-indicator {
-  position: absolute;
-  left: 50px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  justify-content: center;
-  list-style: none;
-  margin: 15px 0 0 0;
-  padding: 0;
+  @apply absolute left-[50px] flex flex-col gap-[10px] justify-center list-none mt-[15px] mb-0 ml-0 mr-0 p-0;
 }
 
 .swiper-indicator-item {
-  width: 12px;
-  height: 12px;
-  margin: 0 4px;
-  border-radius: 50%;
-  background-color: #cccccc;
-  cursor: pointer;
+  @apply w-[12px] h-[12px] mx-[4px] rounded-full bg-[#cccccc] cursor-pointer;
 }
 
 .swiper-indicator-item.active {
-  background-color: #777777;
+  @apply bg-[#777777];
 }
