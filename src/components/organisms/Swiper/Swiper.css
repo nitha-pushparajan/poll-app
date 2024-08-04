@@ -1,0 +1,23 @@
+.swiper-container {
+  @apply w-full h-screen max-h-screen overflow-hidden touch-pan-x;
+}
+
+.swiper-list {
+  @apply flex flex-col list-none p-0 m-0 transition-transform duration-300 ease-out;
+}
+
+.swiper-list.is-swiping {
+  @apply transition-none;
+}
+
+.swiper-indicator {
+  @apply absolute left-[20px] md:left-[50px] flex flex-col gap-[10px] justify-center list-none mt-[15px] mb-0 ml-0 mr-0 p-0;
+}
+
+.swiper-indicator-item {
+  @apply w-[12px] h-[12px] mx-[4px] rounded-full bg-[#cccccc] cursor-pointer;
+}
+
+.swiper-indicator-item.active {
+  @apply bg-[#777777];
+}

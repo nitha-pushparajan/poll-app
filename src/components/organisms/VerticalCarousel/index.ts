@@ -1,2 +1,2 @@
-export {default as VerticalCarousel } from "./VerticalCarousel"; 
-export type { VerticalCarouselProps } from "./VerticalCarousel.types"
+export { default as VerticalCarousel } from './VerticalCarousel';
+export type { VerticalCarouselProps } from './VerticalCarousel.types';

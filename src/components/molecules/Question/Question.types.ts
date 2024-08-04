@@ -1,6 +1,6 @@
-import { OptionsListProps } from '../OptionsList'
+import { OptionsListProps } from '../OptionsList';
 
 export interface QuestionProps extends OptionsListProps {
-    question: string;
-    id: number;
+  question: string;
+  id: number;
 }
